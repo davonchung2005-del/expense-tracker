@@ -59,8 +59,14 @@ print(f"Total: {sum(amounts):.2f} €")
 
 
 #Monthly overview
-month = input("Enter a month (YYYY-MM) for an overview or 'stop' to exit: ").strip()
-print(month)
+while True:
+    month = input("Enter a month (YYYY-MM) for a monthly overview or 'stop' to exit: ").strip().lower()
+    if month == "stop":
+        break
+    total = 0
+    for i in range(len(dates)):
+        if dates[i][0:7] == month:
+            print(f"{dates[i]} {descriptions[i]} ({categories[i]}): {amounts[i]:.2f} €")
 
 
 
