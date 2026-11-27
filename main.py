@@ -1,4 +1,5 @@
-from datetime import date
+from datetime import date 
+import csv
 
 #One list per piece of information; same index = same expense
 descriptions = []
@@ -8,9 +9,9 @@ dates = []
 
 #Load saved expenses (skip if the file doesn't exist yet)
 try:
-    with open("expenses.csv", "r") as file:
-        for line in file:
-            parts = line.strip().split(",")
+    with open("expenses.csv", "r", newline="") as file:
+        reader = csv.reader(file)
+        for parts in reader:
             descriptions.append(parts[0])
             categories.append(parts[1])
             amounts.append(float(parts[2]))
@@ -38,9 +39,10 @@ while True:
     
 
 #Save all expenses (overwrites the file)
-with open("expenses.csv", "w") as file:
+with open("expenses.csv", "w", newline="") as file:
+    writer = csv.writer(file)
     for i in range(len(descriptions)):
-        file.write(f"{descriptions[i]},{categories[i]},{amounts[i]},{dates[i]}\n")
+        writer.writerow([descriptions[i], categories[i], amounts[i], dates[i]])
 
 #Create a string total of 0 for each category
 totals = {}
