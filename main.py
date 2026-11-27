@@ -24,11 +24,18 @@ while True:
     if description == "stop":
         break
     category = input("Which category? ").lower().strip()
-    amount = float(input("How much did it cost? "))
+
+    while True:
+        try:
+            amount = float(input("How much did it cost? "))
+            break
+        except ValueError:
+            print("The amount is invalid")
     descriptions.append(description)
     categories.append(category)
     amounts.append(amount)
     dates.append(str(date.today()))
+    
 
 #Save all expenses (overwrites the file)
 with open("expenses.csv", "w") as file:
