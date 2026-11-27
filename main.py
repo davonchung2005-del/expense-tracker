@@ -67,6 +67,8 @@ while True:
     for i in range(len(dates)):
         if dates[i][0:7] == month:
             print(f"{dates[i]} {descriptions[i]} ({categories[i]}): {amounts[i]:.2f} €")
+            total += amounts[i]
+    print(f"Total: {total:.2f} €")
 
 
 
