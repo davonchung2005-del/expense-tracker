@@ -16,9 +16,14 @@ try:
             if len(parts) != 4:
                 print("Warning: broken line skipped, it will be removed when saving:", parts)
                 continue
+            try:
+                amount = float(parts[2])
+            except ValueError:
+                print("Warning: line will be deleted when saving:", parts)
+                continue
+            amounts.append(amount)
             descriptions.append(parts[0])
             categories.append(parts[1])
-            amounts.append(float(parts[2]))
             dates.append(parts[3])
 except FileNotFoundError:
     pass
