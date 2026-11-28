@@ -78,6 +78,9 @@ while True:
     except ValueError:
         print("invalid")
         continue
+    if len(month) != 7:
+        print("invalid")
+        continue
 
     total = 0
     for i in range(len(dates)):
