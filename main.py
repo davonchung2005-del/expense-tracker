@@ -13,6 +13,9 @@ try:
     with open("expenses.csv", "r", newline="") as file:
         reader = csv.reader(file)
         for parts in reader:
+            if len(parts) != 4:
+                print("Warning: broken line skipped, it will be removed when saving:", parts)
+                continue
             descriptions.append(parts[0])
             categories.append(parts[1])
             amounts.append(float(parts[2]))
