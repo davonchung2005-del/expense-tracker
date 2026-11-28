@@ -1,4 +1,5 @@
 from datetime import date 
+from datetime import datetime
 import csv
 
 #One list per piece of information; same index = same expense
@@ -21,7 +22,7 @@ except FileNotFoundError:
 
 #Ask for new expenses until the user types "stop"
 while True:
-    description = input("What did you buy? ").lower().strip()
+    description = input("What did you buy? (stop to quit)").lower().strip()
     if description == "stop":
         break
     category = input("Which category? ").lower().strip()
@@ -72,6 +73,12 @@ while True:
     month = input("Enter a month (YYYY-MM) for a monthly overview or 'stop' to exit: ").strip().lower()
     if month == "stop":
         break
+    try:
+        datetime.strptime(month, "%Y-%m")
+    except ValueError:
+        print("invalid")
+        continue
+
     total = 0
     for i in range(len(dates)):
         if dates[i][0:7] == month:
